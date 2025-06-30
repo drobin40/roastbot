@@ -32,7 +32,7 @@ if __name__ == "__main__":
     while True:
         user_input = input("Say something to roast: ")
         response = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4.1-nano",
         messages=[
             {
                 "role": "system",
