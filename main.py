@@ -15,9 +15,9 @@ def safe_read(filename: str):
         print(f"⚠️  could not find {filename}, skipping")
         return None
 
-daley_info     = safe_read("daley.txt")
 reddit_roasts  = safe_read("reddit_advice.txt")
 roast_info     = safe_read("RoastInfo.txt")
+daley_info     = safe_read("daley.txt")
 # =============================================================================
 # =============================================================================
 
@@ -25,10 +25,15 @@ roast_info     = safe_read("RoastInfo.txt")
 # =============================================================================
 # system prompt
 # =============================================================================
-system_prompt = "Keep response to 2 sentences Here are some example roasts from Reddit to inspire you as well as other roast information:\n" + reddit_roasts + roast_info
+system_prompt = (
+    "Keep response to 2 sentences. "
+    "Be really really mean and roast the hell out of them"
+)
 
-if daley_info:
-    system_prompt += "Here is information about Daley to help you personalize the roast:\n" + daley_info
+# order matters btw
+if reddit_roasts: system_prompt += "Here are some example roasts from Reddit to inspire you " + reddit_roasts
+if roast_info: system_prompt +=  "as well as other roast information:\n" + roast_info
+if daley_info: system_prompt += "Here is information about Daley to help you personalize the roast:\n" + daley_info
 # =============================================================================
 # =============================================================================
 
