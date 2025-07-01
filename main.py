@@ -25,6 +25,14 @@ with open("daley.txt", "r", encoding="utf-8") as f:
 
 
 # =============================================================================
+# system prompt
+# =============================================================================
+system_prompt = "Keep response to 2 sentences Here are some example roasts from Reddit to inspire you:\n" + reddit_roasts
+
+if use_daley:
+    system_prompt += + "Here is information about Daley to help you personalize the roast:\n" + daley_info
+# =============================================================================
+# =============================================================================
 
 
 # =============================================================================
@@ -38,13 +46,7 @@ if __name__ == "__main__":
         messages=[
             {
                 "role": "system",
-                "content": (
-                    "Keep response to 2 sentences"
-                    "Here are some example roasts from Reddit to inspire you:\n"
-                    f"{reddit_roasts}\n\n"
-                    "Here is information about Daley to help you personalize the roast:\n"
-                    f"{daley_info}"
-                )
+                "content": system_prompt
             },
             {"role": "user", "content": user_input}
         ]
