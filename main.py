@@ -1,14 +1,3 @@
-# testing a pull request
-# great change
-# =============================================================================
-# tweak settings
-# =============================================================================
-use_daley = False
-
-# =============================================================================
-# =============================================================================
-
-
 # =============================================================================
 # imports and opening files
 # =============================================================================
@@ -16,12 +5,19 @@ from openai import OpenAI
 import os
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-with open("reddit_advice.txt", "r", encoding="utf-8") as f:
-    reddit_roasts = f.read()
-with open("RoastInfo.txt", "r", encoding="utf-8") as f:
-    roast_info = f.read()
-# with open("daley.txt", "r", encoding="utf-8") as f:
-#     daley_info = f.read()
+import os
+
+def safe_read(filename: str):
+    if os.path.exists(filename):
+        print(f"✅ using {filename}")
+        return open(filename, encoding="utf-8").read()
+    else:
+        print(f"⚠️  could not find {filename}, skipping")
+        return None
+
+daley_info     = safe_read("daley.txt")
+reddit_roasts  = safe_read("reddit_advice.txt")
+roast_info     = safe_read("RoastInfo.txt")
 # =============================================================================
 # =============================================================================
 
@@ -29,10 +25,10 @@ with open("RoastInfo.txt", "r", encoding="utf-8") as f:
 # =============================================================================
 # system prompt
 # =============================================================================
-system_prompt = "Keep response to 2 sentences Here are some example roasts from Reddit to inspire you as well as other roast information:\n" + reddit_roasts +roast_info
+system_prompt = "Keep response to 2 sentences Here are some example roasts from Reddit to inspire you as well as other roast information:\n" + reddit_roasts + roast_info
 
-if use_daley:
-    system_prompt += + "Here is information about Daley to help you personalize the roast:\n" + daley_info
+if daley_info:
+    system_prompt += "Here is information about Daley to help you personalize the roast:\n" + daley_info
 # =============================================================================
 # =============================================================================
 
