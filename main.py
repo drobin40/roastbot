@@ -53,6 +53,8 @@ if __name__ == "__main__":
             {"role": "user", "content": user_input}
         ]
         )
+        if user_input == "end":
+            break
         response = response.choices[0].message.content
         print('\n\n')
         print(response)
