@@ -20,8 +20,8 @@ with open("reddit_advice.txt", "r", encoding="utf-8") as f:
     reddit_roasts = f.read()
 with open("RoastInfo.txt", "r", encoding="utf-8") as f:
     roast_info = f.read()
-with open("daley.txt", "r", encoding="utf-8") as f:
-    daley_info = f.read()
+# with open("daley.txt", "r", encoding="utf-8") as f:
+#     daley_info = f.read()
 # =============================================================================
 # =============================================================================
 
